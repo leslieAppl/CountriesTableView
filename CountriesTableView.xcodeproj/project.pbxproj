@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		CE9E4D9C23FB8A3B0072DFA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9B23FB8A3B0072DFA4 /* AppDelegate.swift */; };
 		CE9E4D9E23FB8A3B0072DFA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9D23FB8A3B0072DFA4 /* SceneDelegate.swift */; };
-		CE9E4DA023FB8A3B0072DFA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9F23FB8A3B0072DFA4 /* ViewController.swift */; };
+		CE9E4DA023FB8A3B0072DFA4 /* CountriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9F23FB8A3B0072DFA4 /* CountriesVC.swift */; };
 		CE9E4DA323FB8A3B0072DFA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9E4DA123FB8A3B0072DFA4 /* Main.storyboard */; };
 		CE9E4DA523FB8A3C0072DFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9E4DA423FB8A3C0072DFA4 /* Assets.xcassets */; };
 		CE9E4DA823FB8A3C0072DFA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9E4DA623FB8A3C0072DFA4 /* LaunchScreen.storyboard */; };
+		CE9E4DB023FB8EFD0072DFA4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4DAF23FB8EFD0072DFA4 /* Data.swift */; };
+		CE9E4DB623FB91860072DFA4 /* CountriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4DB423FB91860072DFA4 /* CountriesTableViewCell.swift */; };
+		CE9E4DB723FB91860072DFA4 /* CountriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E4DB523FB91860072DFA4 /* CountriesTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE9E4D9823FB8A3B0072DFA4 /* CountriesTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9E4D9B23FB8A3B0072DFA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9E4D9D23FB8A3B0072DFA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9E4D9F23FB8A3B0072DFA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE9E4D9F23FB8A3B0072DFA4 /* CountriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesVC.swift; sourceTree = "<group>"; };
 		CE9E4DA223FB8A3B0072DFA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9E4DA423FB8A3C0072DFA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9E4DA723FB8A3C0072DFA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9E4DA923FB8A3C0072DFA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9E4DAF23FB8EFD0072DFA4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		CE9E4DB423FB91860072DFA4 /* CountriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesTableViewCell.swift; sourceTree = "<group>"; };
+		CE9E4DB523FB91860072DFA4 /* CountriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,42 @@
 		CE9E4D9A23FB8A3B0072DFA4 /* CountriesTableView */ = {
 			isa = PBXGroup;
 			children = (
+				CE9E4DB323FB90DB0072DFA4 /* Modle */,
+				CE9E4DB123FB90C10072DFA4 /* View */,
+				CE9E4DB223FB90C90072DFA4 /* Controller */,
 				CE9E4D9B23FB8A3B0072DFA4 /* AppDelegate.swift */,
 				CE9E4D9D23FB8A3B0072DFA4 /* SceneDelegate.swift */,
-				CE9E4D9F23FB8A3B0072DFA4 /* ViewController.swift */,
 				CE9E4DA123FB8A3B0072DFA4 /* Main.storyboard */,
 				CE9E4DA423FB8A3C0072DFA4 /* Assets.xcassets */,
 				CE9E4DA623FB8A3C0072DFA4 /* LaunchScreen.storyboard */,
 				CE9E4DA923FB8A3C0072DFA4 /* Info.plist */,
 			);
 			path = CountriesTableView;
+			sourceTree = "<group>";
+		};
+		CE9E4DB123FB90C10072DFA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E4DB423FB91860072DFA4 /* CountriesTableViewCell.swift */,
+				CE9E4DB523FB91860072DFA4 /* CountriesTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE9E4DB223FB90C90072DFA4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E4D9F23FB8A3B0072DFA4 /* CountriesVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE9E4DB323FB90DB0072DFA4 /* Modle */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E4DAF23FB8EFD0072DFA4 /* Data.swift */,
+			);
+			path = Modle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +160,7 @@
 			files = (
 				CE9E4DA823FB8A3C0072DFA4 /* LaunchScreen.storyboard in Resources */,
 				CE9E4DA523FB8A3C0072DFA4 /* Assets.xcassets in Resources */,
+				CE9E4DB723FB91860072DFA4 /* CountriesTableViewCell.xib in Resources */,
 				CE9E4DA323FB8A3B0072DFA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9E4DA023FB8A3B0072DFA4 /* ViewController.swift in Sources */,
+				CE9E4DA023FB8A3B0072DFA4 /* CountriesVC.swift in Sources */,
 				CE9E4D9C23FB8A3B0072DFA4 /* AppDelegate.swift in Sources */,
 				CE9E4D9E23FB8A3B0072DFA4 /* SceneDelegate.swift in Sources */,
+				CE9E4DB023FB8EFD0072DFA4 /* Data.swift in Sources */,
+				CE9E4DB623FB91860072DFA4 /* CountriesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
