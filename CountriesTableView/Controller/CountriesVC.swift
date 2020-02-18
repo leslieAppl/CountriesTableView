@@ -10,6 +10,8 @@ import UIKit
 
 class CountriesVC: UIViewController {
     
+    let lableHeader = UILabel(frame: CGRect(x: 16, y: 20, width: 200, height: 20))
+    let lableFooter = UILabel(frame: CGRect(x: 16, y: 18, width: 200, height: 20))
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,15 +27,13 @@ class CountriesVC: UIViewController {
         
         tableView.register(UINib.init(nibName: "CountriesTableViewCell", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell")
         
-        //        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
-        tableView.separatorColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+//        tableView.separatorColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
         // Change TableView Header and Footer
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 60))
         tableView.tableHeaderView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        
-        let lableHeader = UILabel(frame: CGRect(x: 16, y: 20, width: 200, height: 20))
         lableHeader.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         lableHeader.textAlignment = .left
         lableHeader.text = "Countries".uppercased()
@@ -41,13 +41,23 @@ class CountriesVC: UIViewController {
         
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 60))
         tableView.tableFooterView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        let lableFooter = UILabel(frame: CGRect(x: 16, y: 18, width: 200, height: 20))
         lableFooter.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         lableFooter.textAlignment = .left
         lableFooter.text = "\(countriesList.count)".uppercased()
         tableView.tableFooterView?.addSubview(lableFooter)
 
     }
+    
+    func updateTableViewData() {
+        
+        self.tableView.reloadData() // Important to renew the tableview
+        
+        DispatchQueue.main.async {
+            
+            self.lableFooter.text = "Countries count: \(countriesList.count)"
+        }
+    }
+
 }
 
 extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
@@ -89,9 +99,6 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
             countriesCell.mainLbl.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
 //            countriesCell.mainLbl.textAlignment = .center
         }
-        
-        
-        
     }
     
     // MARK: - TableView Delegate
@@ -126,6 +133,37 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if !countriesList.isEmpty {
+            
+            let deleteAction = UIContextualAction(style: .normal, title: "🚮") { (action, view, success) in
+
+                countriesList.remove(at: indexPath.row)
+                                
+                // self.tableView.reloadData() was replaced by calling self.updateTableViewData()
+//                self.tableView.reloadData() // Important to renew the tableview
+                
+                self.updateTableViewData()
+            }
+            
+            deleteAction.backgroundColor = UIColor.red
+            deleteAction.image = #imageLiteral(resourceName: "trash")
+            
+            let swipActionConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+            swipActionConfiguration.performsFirstActionWithFullSwipe = true
+            
+            return swipActionConfiguration
+        } else {
+            
+            return nil
+            
+        }
+        
+    }
+    
     func showPopulationAlert(vc: UIViewController, title: String, message: String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -134,6 +172,4 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         alert.addAction(alertAction)
         vc.present(alert, animated: true, completion: nil)
     }
-
-
 }
