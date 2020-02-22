@@ -23,8 +23,10 @@ class CountriesVC: UIViewController {
         
     }
     
+    // TODO: Setup Table View
     func setupUITableView() {
         
+        // TODO: Test TableView Properties:
         tableView.register(UINib.init(nibName: "CountriesTableViewCell", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell")
         
         tableView.separatorStyle = .none
@@ -45,19 +47,12 @@ class CountriesVC: UIViewController {
         lableFooter.textAlignment = .left
         lableFooter.text = "\(countriesList.count)".uppercased()
         tableView.tableFooterView?.addSubview(lableFooter)
+        
+        // ..
+        tableView.sectionIndexTrackingBackgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        tableView.sectionIndexColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
 
     }
-    
-    func updateTableViewData() {
-        
-        self.tableView.reloadData() // Important to renew the tableview
-        
-        DispatchQueue.main.async {
-            
-            self.lableFooter.text = "Countries count: \(countriesList.count)"
-        }
-    }
-
 }
 
 extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
@@ -70,15 +65,23 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell", for: indexPath) as! CountriesTableViewCell
+        // subtitle style cell
+        let cell2 = UITableViewCell(style: .subtitle, reuseIdentifier: "countriesTableViewCell2")
+        cell2.textLabel?.text = countriesList[indexPath.row].name
+        cell2.textLabel?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        cell2.detailTextLabel?.text = "\(countriesList[indexPath.row].population)"
+        cell2.detailTextLabel?.textColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        configureCell(cell2)
+        return cell2
         
-        cell.mainLbl.text = countriesList[indexPath.row].name
-        
-        configureCell(cell)
-        
-        return cell
+        // default style cell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell", for: indexPath) as! CountriesTableViewCell
+//        cell.mainLbl.text = countriesList[indexPath.row].name
+//        configureCell(cell)
+//        return cell
     }
     
+    // TODO: Configure Table View Cell
     func configureCell(_ cell: UITableViewCell) {
         
         // We don't need down cast here, because we're modifying a public UITableViewCell property.
@@ -89,11 +92,12 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
 //        cell.accessoryType = .detailDisclosureButton
         
         // property of tableView(_: didSelectRowAt:) when select row
-        cell.selectionStyle = .none
-//        cell.selectionStyle = .blue
+//        cell.selectionStyle = .none
+        cell.selectionStyle = .blue
         
         // Down Cast from UITableViewCell as CountriesTableViewCell
         // Cause we need fetch custom property 'mainLbl.textColor' from CountriesTableViewCell
+        
         if let countriesCell = cell as? CountriesTableViewCell {
             
             countriesCell.mainLbl.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
@@ -164,6 +168,17 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
+    func updateTableViewData() {
+        
+        self.tableView.reloadData() // Important to renew the tableview
+        
+        DispatchQueue.main.async {
+            
+            self.lableFooter.text = "Countries count: \(countriesList.count)"
+        }
+    }
+
     
     func showPopulationAlert(vc: UIViewController, title: String, message: String) {
         
