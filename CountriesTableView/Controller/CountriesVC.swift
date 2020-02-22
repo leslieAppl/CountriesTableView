@@ -26,14 +26,16 @@ class CountriesVC: UIViewController {
     // TODO: Setup Table View
     func setupUITableView() {
         
-        // TODO: Test TableView Properties:
-        tableView.register(UINib.init(nibName: "CountriesTableViewCell", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell")
+        // TODO: Registers a nib object containing a cell with the table view
+        // The UINib object looks for the nib file in the bundle's
+        tableView.register(UINib.init(nibName: "CountriesTableViewCell2", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell2")
         
+        // TODO: Setup tableView separator property
         tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
 //        tableView.separatorColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
-        // Change TableView Header and Footer
+        // TODO: Setup TableView Header and Footer
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 60))
         tableView.tableHeaderView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         lableHeader.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -65,44 +67,18 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // subtitle style cell
-        let cell2 = UITableViewCell(style: .subtitle, reuseIdentifier: "countriesTableViewCell2")
-        cell2.textLabel?.text = countriesList[indexPath.row].name
-        cell2.textLabel?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        cell2.detailTextLabel?.text = "\(countriesList[indexPath.row].population)"
-        cell2.detailTextLabel?.textColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        configureCell(cell2)
-        return cell2
+        // initiate new cell with subtitle style
+//        let cell3 = UITableViewCell(style: .subtitle, reuseIdentifier: "countriesTableViewCell2")
+//        cell3.textLabel?.text = countriesList[indexPath.row].name
+//        cell3.textLabel?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+//        cell3.detailTextLabel?.text = "\(countriesList[indexPath.row].population)"
+//        cell3.detailTextLabel?.textColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+//        return cell3
         
-        // default style cell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell", for: indexPath) as! CountriesTableViewCell
-//        cell.mainLbl.text = countriesList[indexPath.row].name
-//        configureCell(cell)
-//        return cell
-    }
-    
-    // TODO: Configure Table View Cell
-    func configureCell(_ cell: UITableViewCell) {
-        
-        // We don't need down cast here, because we're modifying a public UITableViewCell property.
-        cell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-        // show button style at right side in table view cell
-        cell.accessoryType = .detailButton
-//        cell.accessoryType = .detailDisclosureButton
-        
-        // property of tableView(_: didSelectRowAt:) when select row
-//        cell.selectionStyle = .none
-        cell.selectionStyle = .blue
-        
-        // Down Cast from UITableViewCell as CountriesTableViewCell
-        // Cause we need fetch custom property 'mainLbl.textColor' from CountriesTableViewCell
-        
-        if let countriesCell = cell as? CountriesTableViewCell {
-            
-            countriesCell.mainLbl.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-//            countriesCell.mainLbl.textAlignment = .center
-        }
+        // custom cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell2", for: indexPath) as! CountriesTableViewCell2
+        cell.configureCell(at: indexPath)
+        return cell
     }
     
     // MARK: - TableView Delegate

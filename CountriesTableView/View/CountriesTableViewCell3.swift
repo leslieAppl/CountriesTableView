@@ -1,17 +1,15 @@
 //
-//  CountriesTableViewCell.swift
+//  CountriesTableViewCell3.swift
 //  CountriesTableView
 //
-//  Created by leslie on 2/18/20.
+//  Created by leslie on 2/22/20.
 //  Copyright © 2020 leslie. All rights reserved.
 //
 
 import UIKit
 
-class CountriesTableViewCell: UITableViewCell {
+class CountriesTableViewCell3: UITableViewCell {
 
-    @IBOutlet weak var mainLbl: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,12 +24,13 @@ class CountriesTableViewCell: UITableViewCell {
     // TODO: Configure Table View Cell
     func configureCell(at index: IndexPath) {
         
-        mainLbl.text = countriesList[index.row].name
+        self.textLabel?.text = countriesList[index.row].name
+        self.detailTextLabel?.text = "\(countriesList[index.row].population)"
+        textLabel?.textAlignment = .center
+        textLabel?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        detailTextLabel?.text = "\(countriesList[index.row].population)"
+        detailTextLabel?.textColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         
-        mainLbl?.text = countriesList[index.row].name
-        mainLbl?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-//        mainLbl.textAlignment = .center
-
         // We don't need down cast here, because we're modifying a public UITableViewCell property.
         self.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
@@ -47,5 +46,5 @@ class CountriesTableViewCell: UITableViewCell {
         // Cause we need fetch custom property 'mainLbl.textColor' from CountriesTableViewCell
         
     }
-    
+
 }

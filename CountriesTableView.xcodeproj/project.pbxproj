@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE7199A6240127DE007F4FE3 /* CountriesTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7199A4240127DE007F4FE3 /* CountriesTableViewCell2.swift */; };
+		CE7199A7240127DE007F4FE3 /* CountriesTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7199A5240127DE007F4FE3 /* CountriesTableViewCell2.xib */; };
+		CE7199AA24014D4F007F4FE3 /* CountriesTableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7199A824014D4F007F4FE3 /* CountriesTableViewCell3.swift */; };
+		CE7199AB24014D4F007F4FE3 /* CountriesTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7199A924014D4F007F4FE3 /* CountriesTableViewCell3.xib */; };
 		CE9E4D9C23FB8A3B0072DFA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9B23FB8A3B0072DFA4 /* AppDelegate.swift */; };
 		CE9E4D9E23FB8A3B0072DFA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9D23FB8A3B0072DFA4 /* SceneDelegate.swift */; };
 		CE9E4DA023FB8A3B0072DFA4 /* CountriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E4D9F23FB8A3B0072DFA4 /* CountriesVC.swift */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE7199A4240127DE007F4FE3 /* CountriesTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesTableViewCell2.swift; sourceTree = "<group>"; };
+		CE7199A5240127DE007F4FE3 /* CountriesTableViewCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesTableViewCell2.xib; sourceTree = "<group>"; };
+		CE7199A824014D4F007F4FE3 /* CountriesTableViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesTableViewCell3.swift; sourceTree = "<group>"; };
+		CE7199A924014D4F007F4FE3 /* CountriesTableViewCell3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesTableViewCell3.xib; sourceTree = "<group>"; };
 		CE9E4D9823FB8A3B0072DFA4 /* CountriesTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9E4D9B23FB8A3B0072DFA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9E4D9D23FB8A3B0072DFA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +88,10 @@
 			children = (
 				CE9E4DB423FB91860072DFA4 /* CountriesTableViewCell.swift */,
 				CE9E4DB523FB91860072DFA4 /* CountriesTableViewCell.xib */,
+				CE7199A4240127DE007F4FE3 /* CountriesTableViewCell2.swift */,
+				CE7199A5240127DE007F4FE3 /* CountriesTableViewCell2.xib */,
+				CE7199A824014D4F007F4FE3 /* CountriesTableViewCell3.swift */,
+				CE7199A924014D4F007F4FE3 /* CountriesTableViewCell3.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +170,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7199AB24014D4F007F4FE3 /* CountriesTableViewCell3.xib in Resources */,
+				CE7199A7240127DE007F4FE3 /* CountriesTableViewCell2.xib in Resources */,
 				CE9E4DA823FB8A3C0072DFA4 /* LaunchScreen.storyboard in Resources */,
 				CE9E4DA523FB8A3C0072DFA4 /* Assets.xcassets in Resources */,
 				CE9E4DB723FB91860072DFA4 /* CountriesTableViewCell.xib in Resources */,
@@ -173,8 +187,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9E4DA023FB8A3B0072DFA4 /* CountriesVC.swift in Sources */,
+				CE7199AA24014D4F007F4FE3 /* CountriesTableViewCell3.swift in Sources */,
 				CE9E4D9C23FB8A3B0072DFA4 /* AppDelegate.swift in Sources */,
 				CE9E4D9E23FB8A3B0072DFA4 /* SceneDelegate.swift in Sources */,
+				CE7199A6240127DE007F4FE3 /* CountriesTableViewCell2.swift in Sources */,
 				CE9E4DB023FB8EFD0072DFA4 /* Data.swift in Sources */,
 				CE9E4DB623FB91860072DFA4 /* CountriesTableViewCell.swift in Sources */,
 			);

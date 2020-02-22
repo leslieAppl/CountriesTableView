@@ -1,17 +1,15 @@
 //
-//  CountriesTableViewCell.swift
+//  CountriesTableViewCell2.swift
 //  CountriesTableView
 //
-//  Created by leslie on 2/18/20.
+//  Created by leslie on 2/22/20.
 //  Copyright © 2020 leslie. All rights reserved.
 //
 
 import UIKit
 
-class CountriesTableViewCell: UITableViewCell {
+class CountriesTableViewCell2: UITableViewCell {
 
-    @IBOutlet weak var mainLbl: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,14 +24,13 @@ class CountriesTableViewCell: UITableViewCell {
     // TODO: Configure Table View Cell
     func configureCell(at index: IndexPath) {
         
-        mainLbl.text = countriesList[index.row].name
+        textLabel?.text = countriesList[index.row].name
+        textLabel?.textColor = #colorLiteral(red: 0, green: 0.7665774226, blue: 0.2695714235, alpha: 1)
+        detailTextLabel?.text = "\(countriesList[index.row].population)"
+        detailTextLabel?.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         
-        mainLbl?.text = countriesList[index.row].name
-        mainLbl?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-//        mainLbl.textAlignment = .center
-
         // We don't need down cast here, because we're modifying a public UITableViewCell property.
-        self.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        self.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         // show button style at right side in table view cell
         self.accessoryType = .detailButton
