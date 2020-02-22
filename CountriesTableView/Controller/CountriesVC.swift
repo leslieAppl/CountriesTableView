@@ -153,8 +153,9 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
             deleteAction.image = #imageLiteral(resourceName: "trash")
             
             let swipActionConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-            swipActionConfiguration.performsFirstActionWithFullSwipe = true
-            
+            swipActionConfiguration.performsFirstActionWithFullSwipe = false
+//            swipActionConfiguration.performsFirstActionWithFullSwipe = true
+
             return swipActionConfiguration
         } else {
             
