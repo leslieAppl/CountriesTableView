@@ -28,28 +28,30 @@ func createExtendedTableViewData() {
     // reset dictionary
     countryDictionary = [String: [(name: String, population: Int)]]()
     
-    //populate
     for country in countriesList {
         
         let countryKey = String(country.name.prefix(1)) // USA > U
         
+        // countryValue is an array witch is the value of the dictionary key of array
         if var countryValue = countryDictionary[countryKey] {
             
             countryValue.append(country)
+            // if 'countryDictionary[key]' has values of array, append the new element to the array with the same dictionary key.
             countryDictionary[countryKey] = countryValue
-            
+            print("if true: \(countryDictionary[countryKey])\n")
         } else {
-            
+            // if 'countryDictionary[key]' is nil, then append first 'country tuple' under the dictionary key array.
             countryDictionary[countryKey] = [country]
-            
+            print("if else: \(countryDictionary[countryKey])\n")
         }
         
     }
     
-    print(countryDictionary)
+//    print(countryDictionary)
     
     sectionTitles = [String](countryDictionary.keys)
     sectionTitles = sectionTitles.sorted(by: <) // A.. Z
+    print("\(sectionTitles)\n")
 }
 
     var countriesList: [(name: String, population: Int)] =
