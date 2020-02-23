@@ -9,7 +9,10 @@
 - v0.1.1 added sectionIndexTitles()
 
 ## Problems
-- v0.1.0 Don't know how to delete alocated element in the multi-section table veiw.
+- v0.1.0 problem: Don't know how to delete alocated element in the multi-section table veiw.
+- v0.1.2 resolved: Delete multi-section element.
+
+- v0.1.2 problem: How to count multi-section element( a dictionary array)
 
 ## Implement countryDictionary array
     var countriesList: [(name: String, population: Int)] = [("Afghanistan",37209007),("Albania",2938428),("Algeria",42679018),("Andorra",77072),("Angola",31787566)...]

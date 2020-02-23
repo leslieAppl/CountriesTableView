@@ -178,17 +178,17 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            
-    //        let country = countriesList[indexPath.row].name
-    //        if country == "USA" {
-    //
-    //            return 80
-    //        }
-            
-            return 40
-            
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        //        let country = countriesList[indexPath.row].name
+        //        if country == "USA" {
+        //
+        //            return 80
+        //        }
+        
+        return 40
+        
+    }
     
     // UITableViewCell.accessoryType
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -206,40 +206,41 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         let section = indexPath.section
         let row = indexPath.row
         
-        
+        let deleteAction = UIContextualAction(style: .normal, title: "🚮") { (action, view, success) in
             
-            let deleteAction = UIContextualAction(style: .normal, title: "🚮") { (action, view, success) in
-                
-                switch currentViewModeValue {
-                case .Simple:
-                    if !countriesList.isEmpty {
-                        
-                        countriesList.remove(at: row)
-
-                    }
-                case .Extended:
-                    if !countryDictionary.isEmpty {
-                        // remove element in the dictionary array
-                        let countryKey = sectionTitles[section]
-                    }
+            switch currentViewModeValue {
+            case .Simple:
+                if !countriesList.isEmpty {
+                    
+                    countriesList.remove(at: row)
+                    
                 }
-                
-                // self.tableView.reloadData() was replaced by calling self.updateTableViewData()
-//                self.tableView.reloadData() // Important to renew the tableview
-                
-                self.updateTableViewData()
+            case .Extended:
+                if !countryDictionary.isEmpty {
+                    // remove element in the dictionary array
+                    // step 1: allocating dictionary key as table section.
+                    let countryKey = sectionTitles[section]
+                    
+                    // step 2: allocating the element's index in the array of value with dictionary key as table row.
+                    // step 3: remove the element allocated.
+                    countryDictionary[countryKey]?.remove(at: row)
+                }
             }
             
-            deleteAction.backgroundColor = UIColor.red
-            deleteAction.image = #imageLiteral(resourceName: "trash")
+            // self.tableView.reloadData() was replaced by calling self.updateTableViewData()
+            //                self.tableView.reloadData() // Important to renew the tableview
             
-            let swipActionConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-            swipActionConfiguration.performsFirstActionWithFullSwipe = false
-//            swipActionConfiguration.performsFirstActionWithFullSwipe = true
-
-            return swipActionConfiguration
+            self.updateTableViewData()
+        }
         
+        deleteAction.backgroundColor = UIColor.red
+        deleteAction.image = #imageLiteral(resourceName: "trash")
         
+        let swipActionConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipActionConfiguration.performsFirstActionWithFullSwipe = false
+        //            swipActionConfiguration.performsFirstActionWithFullSwipe = true
+        
+        return swipActionConfiguration
     }
     
     func updateTableViewData() {
@@ -249,12 +250,20 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         self.tableView.reloadData() // Important to renew the tableview
         
         DispatchQueue.main.async {
-            
-            self.lableHeader.text = "\(countriesList.count) Countries".uppercased()
-            self.lableFooter.text = "\(countriesList.count) Countries".uppercased()
+
+            switch currentViewModeValue {
+            case .Simple:
+                
+                self.lableHeader.text = "\(countriesList.count) Countries".uppercased()
+                self.lableFooter.text = "\(countriesList.count) Countries".uppercased()
+                
+            case .Extended:
+                // ? how to count dictionary array's elements?
+                self.lableHeader.text = "\(String(describing: countryDictionary.count)) Countries".uppercased()
+                self.lableFooter.text = "\(String(describing: countryDictionary.count)) Countries".uppercased()
+            }
         }
     }
-
     
     func showPopulationAlert(vc: UIViewController, title: String, message: String) {
         
