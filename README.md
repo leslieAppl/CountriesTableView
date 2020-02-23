@@ -31,8 +31,8 @@
             // countryValue is an array witch is the value of the dictionary key of array
             if var countryValue = countryDictionary[countryKey] {
             
+            // if 'countryDictionary[key]' has values of array, append the new element to the array with the same dictionary key.
                 countryValue.append(country)
-                // if 'countryDictionary[key]' has values of array, append the new element to the array with the same dictionary key.
                 countryDictionary[countryKey] = countryValue
                 print("if true: \(countryDictionary[countryKey])\n")
             } else {
