@@ -26,10 +26,24 @@ class CountriesTableViewCell: UITableViewCell {
     // TODO: Configure Table View Cell
     func configureCell(at index: IndexPath) {
         
-        mainLbl.text = countriesList[index.row].name
+        let row = index.row
+        let section = index.section
         
-        mainLbl?.text = countriesList[index.row].name
-        mainLbl?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        switch currentViewModeValue {
+        case .Simple:
+            mainLbl.text = countriesList[row].name
+        case .Extended:
+            
+            let countryKey = sectionTitles[section]
+            
+            if let countryValues = countryDictionary[countryKey] {
+                
+                mainLbl.text = countryValues[row].name
+            }
+        }
+        
+
+        mainLbl.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
 //        mainLbl.textAlignment = .center
 
         // We don't need down cast here, because we're modifying a public UITableViewCell property.

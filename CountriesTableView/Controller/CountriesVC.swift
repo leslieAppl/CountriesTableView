@@ -12,9 +12,8 @@ class CountriesVC: UIViewController {
     
     let lableHeader = UILabel(frame: CGRect(x: 16, y: 20, width: 200, height: 20))
     let lableFooter = UILabel(frame: CGRect(x: 16, y: 18, width: 200, height: 20))
-    
+        
     @IBOutlet weak var tableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +22,26 @@ class CountriesVC: UIViewController {
         
     }
     
+    @IBAction func switchModePressed(_ sender: Any) {
+        
+        // switching mode
+        switch currentViewModeValue {
+        case .Simple:
+            currentViewModeValue = .Extended
+            createExtendedTableViewData()
+        case .Extended:
+            currentViewModeValue = .Simple
+        }
+        
+        self.updateTableViewData()
+    }
+    
     // TODO: Setup Table View
     func setupUITableView() {
         
         // TODO: Registers a nib object containing a cell with the table view
         // The UINib object looks for the nib file in the bundle's
-        tableView.register(UINib.init(nibName: "CountriesTableViewCell2", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell2")
+        tableView.register(UINib.init(nibName: "CountriesTableViewCell", bundle: nil), forCellReuseIdentifier: "countriesTableViewCell")
         
         // TODO: Setup tableView separator property
         tableView.separatorStyle = .none
@@ -50,19 +63,42 @@ class CountriesVC: UIViewController {
         lableFooter.text = "\(countriesList.count)".uppercased()
         tableView.tableFooterView?.addSubview(lableFooter)
         
-        // ..
+        // TODO: Setup Section Index
         tableView.sectionIndexTrackingBackgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         tableView.sectionIndexColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-
     }
 }
 
 extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - TableView Data Source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        switch currentViewModeValue {
+        case .Simple:
+            return 1
+        case .Extended:
+            return sectionTitles.count
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return countriesList.count
+        switch currentViewModeValue {
+        case .Simple:
+            return countriesList.count
+        case .Extended:
+            
+            let countryKey = sectionTitles[section] // A, B, C
+            
+            if let countryValues = countryDictionary[countryKey] {
+                
+                return countryValues.count
+                
+            }
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,12 +112,61 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
 //        return cell3
         
         // custom cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell2", for: indexPath) as! CountriesTableViewCell2
+        let cell = tableView.dequeueReusableCell(withIdentifier: "countriesTableViewCell", for: indexPath) as! CountriesTableViewCell
         cell.configureCell(at: indexPath)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch currentViewModeValue {
+        case .Simple:
+            return nil
+        default:
+            
+            return sectionTitles[section] // A, B, C
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch currentViewModeValue {
+        case .Simple:
+            return 0
+        default:
+            
+            return 6
+        }
+    }
+    
+    // TODO: Setup TableView Section Header Text Floating on the Screen
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 6))
+        returnedView.backgroundColor = #colorLiteral(red: 0.9385011792, green: 0.7164435983, blue: 0.3331357837, alpha: 0.75)
+        
+        // 'y' is the point of setting Header text floating on the Screen!
+        let label = UILabel(frame: CGRect(x: 16, y: self.view.bounds.minY + 100, width: 200, height: 20 ))
+        label.text = sectionTitles[section] // A, B..
+        label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        returnedView.addSubview(label)
+        
+        return returnedView
+    }
+    
     // MARK: - TableView Delegate
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // deselect row. return from selected mode when select row
+        self.tableView.deselectRow(at: indexPath, animated: true )
+        
+        DispatchQueue.main.async {
+            
+        }
+    }
     
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             
@@ -103,15 +188,6 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         self.showPopulationAlert(vc: self, title: "\(countriesList[indexPath.row].name)", message: "\(countriesList[indexPath.row].population)")
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // deselect row. return from selected mode when select row
-        self.tableView.deselectRow(at: indexPath, animated: true )
-        
-        DispatchQueue.main.async {
-            
-        }
-    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -146,6 +222,8 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func updateTableViewData() {
+        
+//        createExtendedTableViewData()
         
         self.tableView.reloadData() // Important to renew the tableview
         
