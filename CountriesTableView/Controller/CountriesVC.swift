@@ -53,14 +53,14 @@ class CountriesVC: UIViewController {
         tableView.tableHeaderView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         lableHeader.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         lableHeader.textAlignment = .left
-        lableHeader.text = "Countries".uppercased()
+        lableHeader.text = "\(countriesList.count) Countries".uppercased()
         tableView.tableHeaderView?.addSubview(lableHeader)
         
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 60))
         tableView.tableFooterView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         lableFooter.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         lableFooter.textAlignment = .left
-        lableFooter.text = "\(countriesList.count)".uppercased()
+        lableFooter.text = "\(countriesList.count) Countries".uppercased()
         tableView.tableFooterView?.addSubview(lableFooter)
         
         // TODO: Setup Section Index
@@ -147,7 +147,7 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         returnedView.backgroundColor = #colorLiteral(red: 0.9385011792, green: 0.7164435983, blue: 0.3331357837, alpha: 0.75)
         
         // 'y' is the point of setting Header text floating on the Screen!
-        let label = UILabel(frame: CGRect(x: 16, y: self.view.bounds.minY + 100, width: 200, height: 20 ))
+        let label = UILabel(frame: CGRect(x: 16, y: self.view.bounds.minY + 10, width: 200, height: 20 ))
         label.text = sectionTitles[section] // A, B..
         label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         returnedView.addSubview(label)
@@ -193,12 +193,27 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if !countriesList.isEmpty {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        
             
             let deleteAction = UIContextualAction(style: .normal, title: "🚮") { (action, view, success) in
+                
+                switch currentViewModeValue {
+                case .Simple:
+                    if !countriesList.isEmpty {
+                        
+                        countriesList.remove(at: row)
 
-                countriesList.remove(at: indexPath.row)
-                                
+                    }
+                case .Extended:
+                    if !countryDictionary.isEmpty {
+                        // remove element in the dictionary array
+                        let countryKey = sectionTitles[section]
+                    }
+                }
+                
                 // self.tableView.reloadData() was replaced by calling self.updateTableViewData()
 //                self.tableView.reloadData() // Important to renew the tableview
                 
@@ -213,11 +228,7 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
 //            swipActionConfiguration.performsFirstActionWithFullSwipe = true
 
             return swipActionConfiguration
-        } else {
-            
-            return nil
-            
-        }
+        
         
     }
     
@@ -229,7 +240,8 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         
         DispatchQueue.main.async {
             
-            self.lableFooter.text = "Countries count: \(countriesList.count)"
+            self.lableHeader.text = "\(countriesList.count) Countries".uppercased()
+            self.lableFooter.text = "\(countriesList.count) Countries".uppercased()
         }
     }
 
