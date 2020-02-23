@@ -63,7 +63,7 @@ class CountriesVC: UIViewController {
         lableFooter.text = "\(countriesList.count) Countries".uppercased()
         tableView.tableFooterView?.addSubview(lableFooter)
         
-        // TODO: Setup Section Index
+        // TODO: Setup Section Index Title
         tableView.sectionIndexTrackingBackgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         tableView.sectionIndexColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
     }
@@ -129,6 +129,18 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        
+        switch currentViewModeValue {
+        case .Simple:
+            return nil
+        default:
+            return sectionTitles
+        }
+    }
+    
+    // MARK: - TableView Delegate
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         switch currentViewModeValue {
@@ -154,10 +166,7 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         
         return returnedView
     }
-    
-    // MARK: - TableView Delegate
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // deselect row. return from selected mode when select row
