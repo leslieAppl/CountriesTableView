@@ -10,10 +10,10 @@
 
 ## Problems
 - v0.1.0 problem: Don't know how to delete alocated element in the multi-section table veiw.
-- v0.1.2 resolved: Delete multi-section element.
+    - v0.1.2 resolved: Delete multi-section element.
 
 - v0.1.2 problem: How to count 2Dimensional Array's element( a dictionary array)
-- v0.1.3 resolved: count 2Dimensional Array's element
+    - v0.1.3 resolved: count 2Dimensional Array's element
 
 ## Implement countryDictionary 2 Dimensional Array 
     var countriesList: [(name: String, population: Int)] = [("Afghanistan",37209007),("Albania",2938428),("Algeria",42679018),("Andorra",77072),("Angola",31787566)...]
