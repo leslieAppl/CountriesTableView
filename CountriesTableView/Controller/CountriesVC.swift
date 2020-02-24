@@ -160,7 +160,8 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
         returnedView.backgroundColor = #colorLiteral(red: 0.9385011792, green: 0.7164435983, blue: 0.3331357837, alpha: 0.75)
         
         // 'y' is the point of setting Header text floating on the Screen!
-        let label = UILabel(frame: CGRect(x: 16, y: self.view.bounds.minY + 10, width: 200, height: 20 ))
+        // Note: 'x: 16, y: self.view.bounds.minY + 16' that 'x,y' are keeping the Table Section Header right above the First Letter of the country name.
+        let label = UILabel(frame: CGRect(x: 16, y: self.view.bounds.minY + 16, width: 20, height: 20 ))
         label.text = sectionTitles[section] // A, B..
         label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         returnedView.addSubview(label)
