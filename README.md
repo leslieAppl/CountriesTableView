@@ -12,9 +12,10 @@
 - v0.1.0 problem: Don't know how to delete alocated element in the multi-section table veiw.
 - v0.1.2 resolved: Delete multi-section element.
 
-- v0.1.2 problem: How to count multi-section element( a dictionary array)
+- v0.1.2 problem: How to count 2Dimensional Array's element( a dictionary array)
+- v0.1.3 resolved: count 2Dimensional Array's element
 
-## Implement countryDictionary array
+## Implement countryDictionary 2 Dimensional Array 
     var countriesList: [(name: String, population: Int)] = [("Afghanistan",37209007),("Albania",2938428),("Algeria",42679018),("Andorra",77072),("Angola",31787566)...]
     
     var countryDictionary = [String: [(name: String, population: Int)]]()
@@ -53,4 +54,63 @@
         print("\(sectionTitles)\n")
     }
 
+## Deleting Element from 2Dimensional Array
+    let deleteAction = UIContextualAction(style: .normal, title: "🚮") { (action, view, success) in
+        
+        switch currentViewModeValue {
+        case .Simple:
+            if !countriesList.isEmpty {
+                
+                countriesList.remove(at: row)
+                
+            }
+        case .Extended:
+            if !countryDictionary.isEmpty {
+                // remove element in the dictionary array
+                // step 1: allocating dictionary key as table section.
+                let countryKey = sectionTitles[section]
+                
+                // step 2: allocating the element's index in the array of value with dictionary key as table row.
+                // step 3: remove the element allocated.
+                countryDictionary[countryKey]?.remove(at: row)
+            }
+        }
+        
+        // self.tableView.reloadData() was replaced by calling self.updateTableViewData()
+        //                self.tableView.reloadData() // Important to renew the tableview
+        
+        self.updateTableViewData()
+    }
+
+## counting 2Dimensional Array's Elements
+        func updateTableViewData() {
+            
+    //        createExtendedTableViewData()
+            
+            self.tableView.reloadData() // Important to renew the tableview
+            
+            DispatchQueue.main.async {
+
+                switch currentViewModeValue {
+                case .Simple:
+                    
+                    self.lableHeader.text = "\(countriesList.count) Countries".uppercased()
+                    self.lableFooter.text = "\(countriesList.count) Countries".uppercased()
+                    
+                case .Extended:
+                    
+                    var total = 0
+                    let array1D = countryDictionary.count
+                    
+                    for keys in 0..<array1D {
+                        let key = sectionTitles[keys]
+                        let array2D = countryDictionary[key]?.count
+                        total += array2D!
+                    }
+                    
+                    self.lableHeader.text = "\(String(describing: total)) Countries".uppercased()
+                    self.lableFooter.text = "\(String(describing: total)) Countries".uppercased()
+                }
+            }
+        }
 

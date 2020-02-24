@@ -258,9 +258,18 @@ extension CountriesVC: UITableViewDelegate, UITableViewDataSource {
                 self.lableFooter.text = "\(countriesList.count) Countries".uppercased()
                 
             case .Extended:
-                // ? how to count dictionary array's elements?
-                self.lableHeader.text = "\(String(describing: countryDictionary.count)) Countries".uppercased()
-                self.lableFooter.text = "\(String(describing: countryDictionary.count)) Countries".uppercased()
+                
+                var total = 0
+                let array1D = countryDictionary.count
+                
+                for keys in 0..<array1D {
+                    let key = sectionTitles[keys]
+                    let array2D = countryDictionary[key]?.count
+                    total += array2D!
+                }
+                
+                self.lableHeader.text = "\(String(describing: total)) Countries".uppercased()
+                self.lableFooter.text = "\(String(describing: total)) Countries".uppercased()
             }
         }
     }
