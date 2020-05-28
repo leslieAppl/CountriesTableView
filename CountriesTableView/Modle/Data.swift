@@ -8,11 +8,11 @@
 
 import Foundation
 
-    enum ViewMode {
-        
-        case Simple
-        case Extended
-    }
+enum ViewMode {
+    
+    case Simple
+    case Extended
+}
 
 var currentViewModeValue: ViewMode = .Simple
 
