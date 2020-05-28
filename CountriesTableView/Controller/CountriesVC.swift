@@ -29,7 +29,7 @@ class CountriesVC: UIViewController {
         case .Simple:
             currentViewModeValue = .Extended
             createExtendedTableViewData()
-            print("countryDictionary: \(countryDictionary)")
+//            print("countryDictionary: \(countryDictionary)")
         case .Extended:
             currentViewModeValue = .Simple
         }

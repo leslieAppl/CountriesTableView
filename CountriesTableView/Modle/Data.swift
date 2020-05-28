@@ -18,10 +18,10 @@ var currentViewModeValue: ViewMode = .Simple
 
 //    let indexLetters = ["#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-    var countryDictionary = [String: [(name: String, population: Int)]]()
-        // z: [("Zambia",18137369),("Zimbabwe",17297495)]
+var countryDictionary = [String: [(name: String, population: Int)]]()
+// z: [("Zambia",18137369),("Zimbabwe",17297495)]
 
-    var sectionTitles = [String]()  // A, B, C, D, E..
+var sectionTitles = [String]()  // A, B, C, D, E..
 
 func createExtendedTableViewData() {
     
@@ -34,15 +34,14 @@ func createExtendedTableViewData() {
         
         // countryValue is an array witch is the value of the dictionary key of array
         if var countryValue = countryDictionary[countryKey] {
-            
+            print("true \(countryDictionary.count)")
             // if 'countryDictionary[key]' has values of array, append the new element to the array with the same dictionary key.
             countryValue.append(country)
             countryDictionary[countryKey] = countryValue
-            print("if true: \(countryDictionary[countryKey])\n")
         } else {
             // if 'countryDictionary[key]' is nil, then append first 'country tuple' under the dictionary key array.
             countryDictionary[countryKey] = [country]
-            print("if else: \(countryDictionary[countryKey])\n")
+            print("false \(countryDictionary.count)")
         }
         
     }
@@ -51,7 +50,7 @@ func createExtendedTableViewData() {
     
     sectionTitles = [String](countryDictionary.keys)
     sectionTitles = sectionTitles.sorted(by: <) // A.. Z
-    print("\(sectionTitles)\n")
+//    print("\(sectionTitles)\n")
 }
 
     var countriesList: [(name: String, population: Int)] =
